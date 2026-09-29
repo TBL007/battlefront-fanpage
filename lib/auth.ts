@@ -1,6 +1,8 @@
 import { betterAuth } from "better-auth";
 
 import { db } from "./db";
+import { customSession } from "better-auth/plugins";
+import { RowDataPacket } from "mysql2";
 
 export const auth = betterAuth({
   database: db,
@@ -24,8 +26,6 @@ export const auth = betterAuth({
         type: "json",
         required: false,
       },
-
-      // fortset med resten av det du trenger
     },
   },
 });

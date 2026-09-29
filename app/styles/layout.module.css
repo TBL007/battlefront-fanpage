@@ -1,0 +1,84 @@
+.page {
+  display: flex;
+  background: var(--bg);
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+  box-sizing: border-box;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  align-content: space-between;
+  width: 100vw;
+  left: 0;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}
+
+.header {
+  top: 0;
+  height: 5rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--surface);
+}
+.nav {
+  bottom: 0;
+  height: 4rem;
+  background: var(--surface);
+}
+
+.menu {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem;
+  gap: 0.3rem;
+  right: 0;
+  top: 5rem;
+  background: var(--surface);
+  height: 100vh;
+  list-style-type: none;
+  width: fit-content;
+  animation: menu 0.3s ease-out;
+}
+
+.facSwitch {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--primary);
+  align-items: center;
+}
+.facSwitch::after {
+  content: "";
+  border: 1px solid var(--primary);
+  justify-self: left;
+  width: 40%;
+  height: 50%;
+  margin-inline: 0.2rem;
+  background: var(--primary);
+  transition: left 0.18s ease;
+  align-items: center;
+}
+
+.account {
+  padding: 0.4rem;
+}
+[data-faction="empire"] .facSwitch {
+  justify-content: right;
+}
+@keyframes menu {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

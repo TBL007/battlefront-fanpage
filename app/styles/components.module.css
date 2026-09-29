@@ -1,0 +1,26 @@
+.btn {
+  background: var(--primary);
+  border: none;
+}
+
+.btn-hidden {
+  background: none;
+  border: none;
+}
+
+[data-faction="empire"] .btn {
+  color: var(--text);
+}
+
+.btn-muted {
+  background: none;
+  border: 1px solid var(--surface);
+  color: var(--text-muted);
+}
+
+.btn-srfc {
+  background: var(--surface);
+  border: none;
+  height: fit-content;
+  width: fit-content;
+}

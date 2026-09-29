@@ -48,13 +48,14 @@ export async function POST(req: NextRequest) {
   try {
     if (image) {
       const [result] = await db.execute<ResultSetHeader>(
-        `INSERT INTO posts (userId, type, title, content) VALUES (?, ?, ?, ? )`,
-        [session.user.id, type, title.trim(), content.trim()],
+        `INSERT INTO posts (user_id, type, title, content, image) VALUES (?, ?, ?, ?, ? )`,
+        [session.user.id, type, title.trim(), content.trim(), image],
       );
+      return NextResponse.json({ id: result.insertId }, { status: 201 });
     }
 
     const [result] = await db.execute<ResultSetHeader>(
-      `INSERT INTO posts (userId, type, title, content) VALUES (?, ?, ?, ? )`,
+      `INSERT INTO posts (user_id, type, title, content) VALUES (?, ?, ?, ? )`,
       [session.user.id, type, title.trim(), content.trim()],
     );
 

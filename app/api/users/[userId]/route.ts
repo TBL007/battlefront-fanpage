@@ -15,11 +15,11 @@ export async function GET(
   );
 
   const [posts] = await db.query<RowDataPacket[]>(
-    "SELECT * FROM posts WHERE userId = ?",
+    "SELECT * FROM posts WHERE user_id = ?",
     [userId],
   );
   const [comments] = await db.query<RowDataPacket[]>(
-    "SELECT * FROM comments WHERE userId = ?",
+    "SELECT * FROM comments WHERE user_id = ?",
     [userId],
   );
 
@@ -34,8 +34,8 @@ export async function GET(
     socials: user.socials,
     createdAt: user.createdAt,
     allegiance: user.allegiance,
-    posts: posts,
-    comments: comments,
+    posts,
+    comments,
   });
 }
 

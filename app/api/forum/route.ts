@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
      u.name  AS authorName,
      u.image AS authorImage
    FROM posts p
-   JOIN user u ON u.id = p.userId`,
+   JOIN user u ON u.id = p.user_id`,
   );
 
   return NextResponse.json(posts);
