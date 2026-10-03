@@ -19,7 +19,7 @@ export default function Login() {
       password: password,
       fetchOptions: {
         onSuccess: () => {
-          router.push("/"); // redirect to login page
+          router.push("./"); // redirect to login page
         },
       },
     });
@@ -41,6 +41,21 @@ export default function Login() {
         />
 
         <Button type="submit">Login</Button>
+        <Button
+          onClick={() =>
+            signIn.social({
+              provider: "discord",
+              fetchOptions: {
+                onSuccess: () => {
+                  router.push("/");
+                  router.refresh();
+                },
+              },
+            })
+          }
+        >
+          Discord
+        </Button>
         <span className={styles.aligner}>
           <input
             type="checkbox"

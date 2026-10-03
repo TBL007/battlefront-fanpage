@@ -1,5 +1,5 @@
 "use client";
-import { signOut, useSession } from "@/lib/authClient";
+import { deleteUser, signOut, useSession } from "@/lib/authClient";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -44,10 +44,22 @@ export default function Header() {
     await signOut({
       fetchOptions: {
         onSuccess: () => {
-          router.push("/login");
+          router.push("/");
         },
       },
     });
+  };
+
+  const handleUserDelete = async () => {
+    const confirmation = confirm(
+      "Are you sure you want to delete your account? All data will be lost",
+    );
+    if (!confirmation) return;
+    const response = await deleteUser();
+    if (!response.data?.success) {
+      return alert("account deletion failed");
+    }
+    handleSignOut();
   };
   return (
     <div data-faction={allegiance ? "republic" : "empire"}>
@@ -88,6 +100,11 @@ export default function Header() {
               <li>
                 <Button onClick={handleSignOut}>
                   <span className={styles.account}>Signout</span>
+                </Button>
+              </li>
+              <li>
+                <Button onClick={handleUserDelete}>
+                  <span className={styles.account}>Delete Account</span>
                 </Button>
               </li>
               <li>

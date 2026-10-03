@@ -1,12 +1,13 @@
 "use client";
 
-import { signUp } from "@/lib/authClient";
+import { signIn, signUp } from "@/lib/authClient";
 import { signUpEmail } from "better-auth/api";
 import { useState } from "react";
 import { useUploadThing } from "@/lib/uploadThing";
 import Link from "next/link";
 import styles from "@styles/login.module.css";
 import Button from "../components/button";
+import { useRouter } from "next/navigation";
 
 export default function signup() {
   const [userName, setUserName] = useState("");
@@ -15,6 +16,8 @@ export default function signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const router = useRouter();
 
   const handleFileChange = (e: any) => {
     const file = e.target.files?.[0];
@@ -46,22 +49,16 @@ export default function signup() {
       if (password.length < 8) return alert("Password is not long enough");
       const { data, error } = await signUp.email(
         {
-          email, // user email address
-          password, // user password -> min 8 characters by default
-          name: userName, // user display name
-          image: imageUrl, // User image URL (optional)
-          callbackURL: "/dashboard", // A URL to redirect to after the user verifies their email (optional)
+          email,
+          password,
+          name: userName,
+          image: imageUrl,
+          callbackURL: "/",
         },
         {
-          onRequest: (ctx) => {
-            //show loading
-          },
-          onSuccess: (ctx) => {
-            //redirect to the dashboard or sign in page
-          },
-          onError: (ctx) => {
-            // display the error message
-            alert(ctx.error.message);
+          onSuccess: () => {
+            router.push("/");
+            router.refresh();
           },
         },
       );
@@ -121,6 +118,21 @@ export default function signup() {
             : isSubmitting
               ? "Signing up..."
               : "Sign up"}
+        </Button>
+        <Button
+          onClick={() =>
+            signIn.social({
+              provider: "discord",
+              fetchOptions: {
+                onSuccess: () => {
+                  router.push("/");
+                  router.refresh();
+                },
+              },
+            })
+          }
+        >
+          Discord
         </Button>
         <Link href="/login" className={styles.link}>
           Login

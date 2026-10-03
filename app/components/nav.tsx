@@ -11,8 +11,14 @@ export default function Nav() {
     { href: "/", image: "/images/home.svg" },
     { href: "/forum", image: "/images/forum.svg" },
     { href: "/gallery", image: "/images/gallery.svg" },
-    { href: "/profile", image: user?.image ?? "/images/account.svg" },
   ];
+
+  if (user) {
+    links.push({
+      href: "/profile",
+      image: user?.image ?? "/images/account.svg",
+    });
+  }
 
   return (
     <div className={`${styles.main} ${styles.nav}`}>
@@ -23,6 +29,7 @@ export default function Nav() {
             width={48}
             height={48}
             alt={"nav-image-" + link.href}
+            className={styles.pfp}
           />
         </Link>
       ))}

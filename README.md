@@ -2,6 +2,31 @@
 
 A battlefront 2 fanpage
 
+# setup
+
+1. Clone repo
+2. insert [Sql schema](/dokumentasjon/Database.sql) in db
+
+3. setup all env variable
+
+```env
+BETTER_AUTH_SECRET=
+BETTER_AUTH_URL=http://localhost:3000
+DB_HOST = localhost
+DB_USER =
+DB_PASSWORD =
+DB_DATABASE =
+
+DISCORD_CLIENT_ID=
+DISCORD_CLIENT_SECRET=
+
+UPLOADTHING_TOKEN=
+UPLOADTHING_SECRETKEY=
+```
+
+5. npm i
+6. npm run dev
+
 ## Kilder
 
 alle ikoner er fra [Nav aksel](https://aksel.nav.no/komponenter/ikoner) veldig bra opensource library for masse forskjellig anbefales hvis du ikke har sett på det før
@@ -42,3 +67,7 @@ jeg har gjort siden min godt lesbar og , enkel å naviger og gitt alt god kontra
 ### insprasjon
 
 - tok inspirasjon fra starwars temaet men fant overaskende nok ikke noen sider jeg ville ta inspirasjon ut ifra
+
+```
+
+```

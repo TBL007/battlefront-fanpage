@@ -34,7 +34,7 @@ const Button: FC<ButtonProps> = ({
         ]
       }
       onClick={() => onClick && onClick()}
-      type={type}
+      type={type ?? "button"}
     >
       {children}
     </button>

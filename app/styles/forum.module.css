@@ -1,0 +1,42 @@
+.postContainer {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  overflow-y: scroll;
+  gap: 2rem;
+}
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  border-bottom: 1px solid var(--text-muted);
+  padding: 0.5rem;
+
+  p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.postHeader {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: relative;
+  gap: 2rem;
+}
+.postLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.author {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 1;
+}

@@ -1,13 +1,18 @@
 import { betterAuth } from "better-auth";
 
 import { db } from "./db";
-import { customSession } from "better-auth/plugins";
-import { RowDataPacket } from "mysql2";
 
 export const auth = betterAuth({
+  logger: { level: "debug" },
   database: db,
   emailAndPassword: {
     enabled: true,
+  },
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["discord"],
+    },
   },
   socialProviders: {
     discord: {

@@ -7,7 +7,8 @@ export async function GET(req: NextRequest) {
     `SELECT
      p.*,
      u.name  AS authorName,
-     u.image AS authorImage
+     u.image AS authorImage,
+     u.allegiance as authorAllegiance
    FROM posts p
    JOIN user u ON u.id = p.user_id`,
   );

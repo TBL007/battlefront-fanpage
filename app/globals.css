@@ -49,7 +49,9 @@
   padding: 0;
   margin: 0;
 }
-
+div {
+  width: inherit;
+}
 *::-webkit-scrollbar {
   display: none;
 }
