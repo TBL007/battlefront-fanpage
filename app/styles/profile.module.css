@@ -1,0 +1,269 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------------ */
+/* Identity                                                            */
+/* ------------------------------------------------------------------ */
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.375rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1.375rem;
+  flex-wrap: wrap;
+}
+
+/* Avatar sits in a faction-coloured ring. */
+.avatarWrap {
+  position: relative;
+  display: inline-flex;
+  border-radius: 50%;
+  border: 2px solid;
+  flex-shrink: 0;
+}
+
+.avatarWrap > span {
+  border: none;
+}
+
+/* Click-to-change overlay on the avatar (owner only). */
+.avatarOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(4, 9, 18, 0.62);
+  color: var(--text);
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.avatarOverlay:focus-within,
+.avatarWrap:hover .avatarOverlay {
+  opacity: 1;
+}
+
+.avatarOverlay input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Keep the hint visible for keyboard users too. */
+.avatarOverlay:focus-within {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.identity {
+  min-width: 0;
+}
+
+.name {
+  font-size: clamp(1.375rem, 6vw, 1.625rem);
+  margin-bottom: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4375rem;
+  margin-top: 0.5rem;
+}
+
+.facBadge {
+  display: inline-block;
+  padding: 0.1875rem 0.625rem;
+  border: 1px solid;
+  font-size: 0.6875rem;
+}
+
+/* Small square Discord badge that links to the member's real profile. */
+.discordChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-muted);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.discordChip:hover {
+  color: #5865f2;
+  border-color: #5865f2;
+}
+
+/* ------------------------------------------------------------------ */
+/* Stats                                                               */
+/* ------------------------------------------------------------------ */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  margin-bottom: 1.75rem;
+}
+
+.stat {
+  padding: 0.875rem 0.5rem;
+  text-align: center;
+  border-right: 1px solid var(--line);
+}
+
+.stat:last-child {
+  border-right: none;
+}
+
+.statValue {
+  font-size: 1.375rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  margin-top: 0.125rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Owner-only panel                                                    */
+/* ------------------------------------------------------------------ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+  padding: 1rem;
+  margin-bottom: 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.panelTitle {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.facRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.panelError {
+  font-size: 0.8125rem;
+  color: var(--accent-active);
+}
+
+.connected {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.connected svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.panelLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6875rem 1.125rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 0.875rem;
+}
+
+.panelLink:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ------------------------------------------------------------------ */
+/* Feed                                                                */
+/* ------------------------------------------------------------------ */
+
+.section {
+  margin-bottom: 1.75rem;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  margin-bottom: 0.875rem;
+}
+
+.feed {
+  border-top: 1px solid var(--line);
+}
+
+.feedItem {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.375rem 0.5rem;
+  padding: 0.75rem 0.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.feedKind {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid var(--line);
+  color: var(--text-muted);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.feedDate {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.feedLink {
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.feedLink:hover {
+  color: var(--primary);
+}

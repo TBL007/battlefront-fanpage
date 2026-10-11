@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const [result] = await db.execute<ResultSetHeader>(
-      `INSERT INTO posts (user_id,post_id, content) VALUES (?, ?, ? )`,
+      `INSERT INTO comments (user_id, post_id, content) VALUES (?, ?, ?)`,
       [session.user.id, postId, content.trim()],
     );
 
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error(err);
     return NextResponse.json(
-      { error: "Failed to create post" },
+      { error: "Failed to create comment" },
       { status: 500 },
     );
   }

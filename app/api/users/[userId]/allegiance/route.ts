@@ -5,9 +5,9 @@ import { headers } from "next/headers";
 
 export async function POST(
   _req: NextRequest,
-  { params }: { params: Promise<{ userId: string }> },
+  ctx: RouteContext<"/api/users/[userId]/allegiance">,
 ) {
-  const { userId } = await params;
+  const { userId } = await ctx.params;
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (!session) {

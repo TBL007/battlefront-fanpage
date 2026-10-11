@@ -1,81 +1,284 @@
+/* ------------------------------------------------------------------ */
+/* Page shell                                                          */
+/* ------------------------------------------------------------------ */
+
 .page {
-  display: flex;
-  background: var(--bg);
-  padding-top: 5rem;
-  padding-bottom: 4rem;
-  box-sizing: border-box;
-  min-height: 100vh;
+  flex: 1;
   width: 100%;
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 1rem) var(--gutter)
+    calc(var(--nav-h) + 1.5rem);
 }
 
-.main {
-  display: flex;
+/* ------------------------------------------------------------------ */
+/* Header + bottom nav share the same fixed bar treatment              */
+/* ------------------------------------------------------------------ */
+
+.bar {
   position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--shell);
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-content: space-between;
-  width: 100vw;
-  left: 0;
-  padding-inline: 1rem;
-  padding-block: 0.5rem;
+  padding-inline: var(--gutter);
   z-index: 2000;
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 
 .header {
   top: 0;
-  height: 5rem;
+  height: var(--header-h);
   background: var(--bg);
-  border-bottom: 1px solid var(--surface);
-}
-.nav {
-  bottom: 0;
-  height: 4rem;
-  background: var(--surface);
+  border-width: 0 0 1px;
 }
 
-.menu {
+.nav {
+  bottom: 0;
+  height: var(--nav-h);
+}
+
+/* 562px = --shell (560px) + the 1px borders added below */
+@media (min-width: 562px) {
+  .header,
+  .nav {
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+
+  .header {
+    border-top: 1px solid var(--line);
+    border-radius: 0 0 4px 4px;
+  }
+
+  .nav {
+    border-bottom: 1px solid var(--line);
+    border-radius: 4px 4px 0 0;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Header contents                                                     */
+/* ------------------------------------------------------------------ */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.brandMark {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text);
+  transition: background-color 0.15s ease;
+}
+
+.iconButton:hover {
+  background: var(--surface-2);
+}
+
+/* ------------------------------------------------------------------ */
+/* Bottom nav                                                          */
+/* ------------------------------------------------------------------ */
+
+.navList {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+}
+
+.navItem {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  border-top: 2px solid transparent;
+  transition: color 0.15s ease;
+}
+
+.navItem:hover {
+  color: var(--text);
+}
+
+.navItemActive {
+  color: var(--primary);
+  border-top-color: var(--primary);
+}
+
+/* ------------------------------------------------------------------ */
+/* Drawer                                                              */
+/* ------------------------------------------------------------------ */
+
+.scrim {
   position: fixed;
+  inset: 0;
+  background: rgba(4, 9, 18, 0.6);
+  border: none;
+  z-index: 2900;
+  opacity: 0;
+  animation: fade 0.18s ease forwards;
+  cursor: default;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 78%;
+  max-width: 320px;
+  z-index: 3000;
   display: flex;
   flex-direction: column;
-  z-index: 2000;
-  padding: 1rem;
-  gap: 0.3rem;
-  right: 0;
-  top: 5rem;
+  gap: 0.5rem;
+  padding: 1.25rem var(--gutter);
+  padding-top: calc(1.25rem + env(safe-area-inset-top));
   background: var(--surface);
-  height: 100vh;
-  list-style-type: none;
-  width: fit-content;
-  animation: menu 0.3s ease-out;
+  border-left: 1px solid var(--line);
+  overflow-y: auto;
+  animation: drawer-in 0.2s ease;
+}
+
+.drawerClose {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.drawerLabel {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0.875rem 0 0.25rem;
+}
+
+.drawerLabel:first-of-type {
+  margin-top: 0;
+}
+
+.drawerUser {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  margin-bottom: 0.25rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+
+.drawerUserName {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.drawerUserMeta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.drawerNav {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.8125rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.drawerNav:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.drawerNavCurrent {
+  border-color: var(--primary);
+}
+
+/* ------------------------------------------------------------------ */
+/* Faction switch                                                      */
+/* ------------------------------------------------------------------ */
+
+.facRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.8125rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  font-size: 0.875rem;
 }
 
 .facSwitch {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 1rem;
-  background: var(--surface);
+  position: relative;
+  width: 2.75rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  padding: 0;
+  background: none;
   border: 1px solid var(--primary);
-  align-items: center;
-}
-.facSwitch::after {
-  content: "";
-  border: 1px solid var(--primary);
-  justify-self: left;
-  width: 40%;
-  height: 50%;
-  margin-inline: 0.2rem;
-  background: var(--primary);
-  transition: left 0.18s ease;
-  align-items: center;
 }
 
-.account {
-  padding: 0.4rem;
+.facSwitch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--primary);
+  transition: left 0.18s ease;
 }
-[data-faction="empire"] .facSwitch {
-  justify-content: right;
+
+.facSwitch[data-faction="empire"]::after {
+  left: 22px;
 }
-@keyframes menu {
+
+.facSwitch:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------------------ */
+/* Animations                                                          */
+/* ------------------------------------------------------------------ */
+
+@keyframes drawer-in {
   from {
     transform: translateX(100%);
   }
@@ -84,6 +287,11 @@
   }
 }
 
-.pfp {
-  border-radius: 50%;
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

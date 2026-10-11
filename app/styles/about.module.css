@@ -1,0 +1,81 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.625rem;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.title {
+  font-size: clamp(1.625rem, 7vw, 1.875rem);
+  margin-bottom: 0.75rem;
+}
+
+.lede {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Game facts (2x2, same rhythm as the stat grid)                      */
+/* ------------------------------------------------------------------ */
+
+.factList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid var(--line);
+  margin-top: 0.75rem;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.875rem 1rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.fact:nth-child(2n) {
+  border-right: none;
+}
+
+.fact:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+
+.factLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.factValue {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------------ */
+
+.disclaimer {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}

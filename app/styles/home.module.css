@@ -1,0 +1,113 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero                                                                */
+/* ------------------------------------------------------------------ */
+
+.hero {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.heroArt {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-bottom: 1px solid var(--line);
+  background: #0a1526;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+/*
+ * Stand-in for the game's wordmark sitting on top of the splash art.
+ * A drop shadow keeps it readable over the bright parts of the image.
+ */
+.heroWordmark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1rem;
+  text-align: center;
+  font-size: clamp(1.0625rem, 4.5vw, 1.375rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-shadow: 0 2px 18px rgba(4, 9, 18, 0.85);
+}
+
+.heroBody {
+  padding: 1.25rem 1.125rem 1.5rem;
+}
+
+.eyebrow {
+  font-size: 0.8125rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: clamp(1.75rem, 8vw, 2.125rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.75rem;
+}
+
+.lede {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+.solidCta,
+.outlineCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6875rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.solidCta {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-dark);
+}
+
+.solidCta:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--text-dark);
+}
+
+.outlineCta {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--text-muted);
+}
+
+.outlineCta:hover {
+  background: var(--bg);
+  border-color: var(--primary);
+  color: var(--primary);
+}

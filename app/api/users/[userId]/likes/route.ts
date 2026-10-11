@@ -5,10 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ userId: string }> },
+  ctx: RouteContext<"/api/users/[userId]/likes">,
 ) {
-  const { userId } = await params;
-  const session = await auth.api.getSession();
+  const { userId } = await ctx.params;
+  const session = await auth.api.getSession({ headers: req.headers });
 
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

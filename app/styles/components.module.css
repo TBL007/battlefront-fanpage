@@ -1,26 +1,84 @@
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6875rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.block {
+  width: 100%;
+}
+
+/* Filled with the faction colour, dark text on top */
+.solid {
   background: var(--primary);
-  border: none;
+  border-color: var(--primary);
+  color: var(--text-dark);
 }
 
-.btn-hidden {
-  background: none;
-  border: none;
+.solid:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--text-dark);
 }
 
-[data-faction="empire"] .btn {
-  color: var(--text);
-}
-
-.btn-muted {
-  background: none;
-  border: 1px solid var(--surface);
+/* Faction-coloured outline on a transparent background */
+.outline {
+  background: transparent;
+  border-color: var(--line);
   color: var(--text-muted);
 }
 
-.btn-srfc {
+.outline:hover {
   background: var(--surface);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Neutral, low emphasis */
+.quiet {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--text-muted);
+}
+
+.quiet:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.surface {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.surface:hover {
+  background: var(--surface-2);
+  border-color: var(--surface-2);
+}
+
+.bare {
+  background: none;
   border: none;
-  height: fit-content;
-  width: fit-content;
+  color: var(--text-muted);
+  padding: 0.25rem;
+}
+
+.bare:hover {
+  color: var(--primary);
 }

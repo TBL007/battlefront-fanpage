@@ -4,9 +4,9 @@ import { auth } from "@/lib/auth";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: Promise<{ commentId: string }> },
+  ctx: RouteContext<"/api/forum/comments/[id]/like">,
 ) {
-  const { commentId } = await params;
+  const { id: commentId } = await ctx.params;
   const session = await auth.api.getSession({ headers: req.headers });
 
   if (!session?.user) {
@@ -23,9 +23,9 @@ export async function POST(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: Promise<{ commentId: string }> },
+  ctx: RouteContext<"/api/forum/comments/[id]/like">,
 ) {
-  const { commentId } = await params;
+  const { id: commentId } = await ctx.params;
   const session = await auth.api.getSession({ headers: req.headers });
 
   if (!session?.user) {

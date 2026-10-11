@@ -35,9 +35,14 @@ export async function POST(req: NextRequest) {
       { status: 400 },
     );
   }
-  if (typeof content !== "string" || content.trim().length === 0) {
+
+  const text = typeof content === "string" ? content.trim() : "";
+
+  // A forum thread needs a body; a gallery entry can stand on its image alone.
+  if (type !== "gallery" && text.length === 0) {
     return NextResponse.json({ error: "Content is required" }, { status: 400 });
   }
+
   if (type !== "forum" && type !== "gallery") {
     return NextResponse.json(
       { error: "Type must be 'forum' or 'gallery'" },
@@ -46,17 +51,16 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    if (image) {
-      const [result] = await db.execute<ResultSetHeader>(
-        `INSERT INTO posts (user_id, type, title, content, image) VALUES (?, ?, ?, ?, ? )`,
-        [session.user.id, type, title.trim(), content.trim(), image],
-      );
-      return NextResponse.json({ id: result.insertId }, { status: 201 });
-    }
-
     const [result] = await db.execute<ResultSetHeader>(
-      `INSERT INTO posts (user_id, type, title, content) VALUES (?, ?, ?, ? )`,
-      [session.user.id, type, title.trim(), content.trim()],
+      `INSERT INTO posts (user_id, type, title, content, image_url)
+       VALUES (?, ?, ?, ?, ?)`,
+      [
+        session.user.id,
+        type,
+        title.trim(),
+        text || null,
+        image ? String(image) : null,
+      ],
     );
 
     return NextResponse.json({ id: result.insertId }, { status: 201 });

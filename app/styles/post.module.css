@@ -1,0 +1,237 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------------ */
+/* Post                                                                */
+/* ------------------------------------------------------------------ */
+
+.post {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.postHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.875rem;
+}
+
+.postAuthor {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+.postAuthorName {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.postDate {
+  flex-shrink: 0;
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.postTitle {
+  font-size: clamp(1.375rem, 6vw, 1.625rem);
+  margin-bottom: 0.5rem;
+}
+
+.postBody {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.postImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+}
+
+.postActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Comments                                                            */
+/* ------------------------------------------------------------------ */
+
+.comments {
+  margin-top: 1.75rem;
+}
+
+.commentsTitle {
+  font-size: 1.125rem;
+  margin-bottom: 0.875rem;
+}
+
+.commentList,
+.commentChildren {
+  list-style: none;
+}
+
+.commentItem {
+  border-left: 1px solid var(--line);
+  padding-left: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.commentChildren {
+  margin-top: 1.25rem;
+}
+
+.commentHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.375rem;
+}
+
+.commentAuthor {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.commentName {
+  font-weight: 600;
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.commentAuthor:hover .commentName {
+  color: var(--accent-hover);
+}
+
+.commentDate {
+  flex-shrink: 0;
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.commentBody {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.commentActions {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+}
+
+/* Both the post and comment like buttons share this control. */
+.react {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  padding: 0.375rem 0.5rem;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  transition: color 0.15s ease, border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.react:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--line);
+}
+
+/* Liked: filled with the viewer's faction colour. */
+.reactActive,
+.reactActive:hover:not(:disabled) {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-dark);
+}
+
+.react:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.reactCount {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reply form                                                          */
+/* ------------------------------------------------------------------ */
+
+.replyForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.replyLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.replyInput {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.replyInput::placeholder {
+  color: var(--text-muted);
+}
+
+.replyInput:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.error {
+  font-size: 0.8125rem;
+  color: var(--accent-active);
+}
+
+.signInPrompt {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.signInPrompt a {
+  color: var(--primary);
+}
